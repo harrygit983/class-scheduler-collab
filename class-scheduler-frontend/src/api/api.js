@@ -1,3 +1,30 @@
+import axios from "axios";
+
+const API_URL = "http://localhost:5001/api"; // Adjust if deployed
+
+export const fetchCourses = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/courses`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching courses:", error);
+    return [];
+  }
+};
+
+export const fetchRequirements = async (major, degree) => {
+  try {
+    const response = await axios.get(`${API_URL}/requirements/${major}/${degree}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching requirements:", error);
+    return [];
+  }
+};
+
+/*
+import axios from "axios";
+
 const API_URL = "http://localhost:5001/api";
 
 // Fetch a valid schedule
@@ -16,18 +43,24 @@ export const fetchSchedule = async () => {
   };  
 
 
-// 📌 Fetch all courses
-export const fetchCourses = async () => {
+// Fetch all courses
+  export const fetchCourses = async () => {
     try {
-      const response = await fetch("http://localhost:5001/api/courses");
-      if (!response.ok) throw new Error(`Error ${response.status}: ${response.statusText}`);
-  
-      const data = await response.json();
-      console.log("API Response:", data); // 🔍 Debugging log
-      return data;
+      const response = await axios.get(`${API_URL}/courses`);
+      return response.data;
     } catch (error) {
-      console.error("Failed to fetch courses:", error);
-      return []; // Return empty array on failure
+      console.error("Error fetching courses:", error);
+      return [];
+    }
+  };
+// Fetch a course Requirements for a major
+  export const fetchRequirements = async (major, degree) => {
+    try {
+      const response = await axios.get(`${API_URL}/requirements/${major}/${degree}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching requirements:", error);
+      return [];
     }
   };  
 
@@ -81,3 +114,4 @@ export const loginUser = async (email, password) => {
     return null;
   }
 };
+*/

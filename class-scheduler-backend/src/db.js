@@ -5,6 +5,18 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    require: true, // Required for Neon SSL connections
+    rejectUnauthorized: false, // Required for Neon SSL connections
+  },// FORCES SSL CONNECTION
+});
+
+export { pool };
+
+// Local Development
+/*
+const pool = new Pool({
   user: "postgres",
   host: "localhost",
   database: "class_scheduler",
@@ -13,4 +25,4 @@ const pool = new Pool({
 });
 
 export default pool;
-
+*/
